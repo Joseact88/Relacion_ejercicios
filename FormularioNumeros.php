@@ -7,11 +7,14 @@
     <title>Formulario</title>
     <?php
         include "Funciones.php";
-        $suma="";
-        $error="";
-        $errores=valida();
-        
-        
+        if(count($_POST)>0)
+        {
+            $operacion="";
+            $error="";
+            $errores=valida();
+            $num1=($_POST['num1']);
+            $num2=($_POST['num2']);
+        }  
     ?>
 </head>
 <body>
@@ -20,18 +23,41 @@
     <input type="text" id="num1" name="num1"><br>
     <label>Numero 2:</label><br>
     <input type="text" id="num2" name="num2"><br><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Sumar" id="sumar" name="sumar">
+    <input type="submit" value="Restar" id="restar" name="restar">
+    <input type="submit" value="Multiplicar" id="multiplicar" name="multiplicar">
+    <input type="submit" value="Dividir" id="dividir" name="dividir">
     <?php
-    if(count($errores)==0)
+    if(isset($errores))
     {
-        $suma=$num1+$num2;
-        print("$suma"); 
-    }
-    else
-    {
-        print_r($errores);
-    }
-                 
+        if(count($errores)==0)
+        {
+            if(isset($_POST['sumar']))
+            {
+            $operacion=$num1+$num2;
+            echo("La suma es ".$operacion); 
+            }
+            if(isset($_POST['restar']))
+            {
+            $operacion=$num1-$num2;
+            print("La resta es $operacion"); 
+            }
+            if(isset($_POST['multiplicar']))
+            {
+            $operacion=$num1*$num2;
+            print("La multiplicación es $operacion"); 
+            }
+            if(isset($_POST['dividir']))
+            {
+            $operacion=$num1/$num2;
+            print("La división es $operacion"); 
+            }
+        }
+        else
+        {
+            print_r($errores);
+        }
+    }       
     ?>
 </form> 
 </body>

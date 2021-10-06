@@ -30,22 +30,27 @@ function valida()
 {
     $errores=array();
 
-    if(!isset($_POST['num1']))
+    if($_POST['num1']=="")
     {
         $errores['num1']="ERROR:ESTÁ VACÍO";
     }
-    elseif(!is_numeric($_POST['num1']))
+    else
     {
-        $errores['num1']="ERROR:NO ES UN NÚMERO";
+        if(!is_numeric($_POST['num1']))
+        {
+            $errores['num1']="ERROR:NO ES UN NÚMERO";
+        }
     }
-    
-    if(!isset($_POST['num2']))
+    if($_POST['num2']=="")
     {
         $errores['num2']="ERROR:ESTÁ VACÍO";
     }
-    elseif(!is_numeric($_POST['num1']))
+    else
     {
-        $errores['num2']="ERROR:NO ES UN NÚMERO";
+        if(!is_numeric($_POST['num1']))
+        {
+            $errores['num2']="ERROR:NO ES UN NÚMERO";
+        }
     }
     return $errores;
 }
