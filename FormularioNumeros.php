@@ -7,11 +7,14 @@
     <title>Formulario</title>
     <?php
         include "Funciones.php";
+        $num1="";
+        $num2="";
+
         if(count($_POST)>0)
         {
             $operacion="";
             $error="";
-            $errores=valida();
+            $errores=validaNumeros();
             $num1=($_POST['num1']);
             $num2=($_POST['num2']);
         }  
@@ -20,9 +23,9 @@
 <body>
 <form action="FormularioNumeros.php" method="POST">
     <label>Numero 1:</label><br>
-    <input type="text" id="num1" name="num1"><br>
+    <input type="text" id="num1" name="num1" value="<?php echo is_numeric($num1) ? $num1: ''?>"><br>
     <label>Numero 2:</label><br>
-    <input type="text" id="num2" name="num2"><br><br>
+    <input type="text" id="num2" name="num2" value="<?php echo is_numeric($num2) ? $num2: ''?>"><br><br>
     <input type="submit" value="Sumar" id="sumar" name="sumar">
     <input type="submit" value="Restar" id="restar" name="restar">
     <input type="submit" value="Multiplicar" id="multiplicar" name="multiplicar">
@@ -57,7 +60,7 @@
         {
             print_r($errores);
         }
-    }       
+    }
     ?>
 </form> 
 </body>
